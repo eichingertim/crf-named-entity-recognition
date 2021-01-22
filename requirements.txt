@@ -1,1 +1,6 @@
 gensim
+spacy
+tqdm
+sklearn
+sklearn_crfsuite
+collections
