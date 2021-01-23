@@ -79,8 +79,6 @@ class PreProcessor:
                 sentence['labeling'] = labels_from_all[j]
                 sentences.append(sentence)
 
-        sentences = PreProcessor.stop_words(sentences)
-
         words = list()
         for s in sentences:
             for i, t in enumerate(s['tokens']):
@@ -91,6 +89,44 @@ class PreProcessor:
                 word['pos'] = s['pos'][i]
                 word['labeling'] = s['labeling'][i]
                 words.append(word)
+
+        return pd.DataFrame(words)
+
+    @staticmethod
+    def preprocess_test_tf(data, extraction_of):
+        sentences = list()
+        for k,v in tqdm(data.items()):
+            tokens = PreProcessor.lemmatize_sen(v.get('tokens'))
+            detokenzied = ' '.join(tokens)
+            pos_tagged = nlp(detokenzied)
+            pos = [t.tag_ for t in pos_tagged]
+            labeler = [val for s, val in data[k].items() if s != 'tokens']
+
+            for j in range(0, len(labeler)):
+                sentence = dict()
+                sentence['sentenceId'] = k+'|'+ str(j)
+                sentence['tokens'] = tokens
+                sentence['pos'] = pos
+                labels_from_all = list()
+                for l in labeler:
+                    one = [PreProcessor.getLabel(l, i) for i in range(0, len(tokens))]
+                    labels_from_all.append(one)
+
+                sentence['labeling'] = labels_from_all[j]
+                sentences.append(sentence)
+
+        words = list()
+        for s in sentences:
+            for i, t in enumerate(s['tokens']):
+                word = dict()
+                word['id'] = s['sentenceId']
+                word['token'] = t
+                word['labeling'] = s['labeling'][i]
+                if s['labeling'][i] == 'O' or s['labeling'][i] == extraction_of:
+                    words.append(word)
+                else:
+                    word['labeling'] = 'O'
+                    words.append(word)
 
         return pd.DataFrame(words)
 
