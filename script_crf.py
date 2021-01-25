@@ -54,11 +54,13 @@ def getCluster(token):
     words = list(vocabs)
     return kmeans.labels_[words.index(token)]
 
+extraction_of = 'A'
+
 print("START TRAINING PREPROCESSING")
-train_data = PreProcessor.preprocess_training(train_data, getCluster)
+train_data = PreProcessor.preprocess_train_crf(train_data, getCluster, extraction_of)
 
 print("START TEST PREPROCESSING")
-test_data = PreProcessor.preprocess_test(test_data, getCluster)
+test_data = PreProcessor.preprocess_test_crf(test_data, getCluster, extraction_of)
 
 train_data_len = len(train_data)
 print(train_data[:5])
@@ -118,11 +120,6 @@ def word2features(sent, i):
         cluster1 = sent[i-1][2]
         features.update({
             '-1:word1.lower()': word1.lower(), 
-            '-1:word1[-3:]': word1[-3:],
-            '-1:word1[-2:]': word1[-2:],
-            '-1:word1.isupper()': word1.isupper(),
-            '-1:word1.istitle()': word1.istitle(),
-            '-1:word1.isdigit()': word1.isdigit(),
             '-1:postag1': postag1,
             '-1:postag1[:2]': postag1[:2],
         })
@@ -134,11 +131,6 @@ def word2features(sent, i):
         cluster1 = sent[i+1][2]
         features.update({
             '+1:word1.lower()': word1.lower(), 
-            '+1:word1[-3:]': word1[-3:],
-            '+1:word1[-2:]': word1[-2:],
-            '+1:word1.isupper()': word1.isupper(),
-            '+1:word1.istitle()': word1.istitle(),
-            '+1:word1.isdigit()': word1.isdigit(),
             '+1:postag1': postag1,
             '+1:postag1[:2]': postag1[:2],
         })
@@ -163,15 +155,16 @@ y_test = [sent2labels(s) for s in sentences_test]
 
 crf = sklearn_crfsuite.CRF(
     algorithm='lbfgs',
-    c1=0.001,
-    c2=0.001,
+    c1=0.0001,
+    c2=0.0001,
     max_iterations=100,
     all_possible_transitions=True
 )
 crf.fit(X_train, y_train)
 
 y_pred = crf.predict(X_test)
-print(metrics.flat_classification_report(y_test, y_pred, labels=['A', 'M', 'S']))
+
+print(metrics.flat_classification_report(y_test, y_pred))
 
 def print_state_features(state_features):
     for (attr, label), weight in state_features:

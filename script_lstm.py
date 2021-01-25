@@ -38,12 +38,12 @@ data = load_data('data_laptop_absa.json')
 PREPROCSESSING
 """
 
-extraction_of = 'M'
+extraction_of = 'A'
 
 vocabs, kmeans = PreProcessor.calculateClusters(data)
 
 print("START PREPROCESSING")
-data = PreProcessor.preprocess_test_tf(data, extraction_of)
+data = PreProcessor.preprocess_tf(data, extraction_of)
 
 
 class SentenceGetter(object):
@@ -89,6 +89,8 @@ y = [to_categorical(i, num_classes=n_tags) for i in y]
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
+print(X_train)
+
 
 input = Input(shape=(140,))
 model = Embedding(input_dim=n_words, output_dim=50, input_length=140)(input)
@@ -98,37 +100,7 @@ out = TimeDistributed(Dense(n_tags, activation="softmax"))(model)
 
 model = Model(input, out)
 
-def f1(y_true, y_pred):
-    def recall(y_true, y_pred):
-        """Recall metric.
-
-        Only computes a batch-wise average of recall.
-
-        Computes the recall, a metric for multi-label classification of
-        how many relevant items are selected.
-        """
-        true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
-        possible_positives = K.sum(K.round(K.clip(y_true, 0, 1)))
-        recall = true_positives / (possible_positives + K.epsilon())
-        return recall
-
-    def precision(y_true, y_pred):
-        """Precision metric.
-
-        Only computes a batch-wise average of precision.
-
-        Computes the precision, a metric for multi-label classification of
-        how many selected items are relevant.
-        """
-        true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
-        predicted_positives = K.sum(K.round(K.clip(y_pred, 0, 1)))
-        precision = true_positives / (predicted_positives + K.epsilon())
-        return precision
-    precision = precision(y_true, y_pred)
-    recall = recall(y_true, y_pred)
-    return 2*((precision*recall)/(precision+recall+K.epsilon()))
-
-model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=["accuracy", f1])
+model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=["accuracy"])
 model.summary()
 
 history = model.fit(X_train, np.array(y_train), batch_size=32, epochs=3, validation_split=0.2, verbose=1)
