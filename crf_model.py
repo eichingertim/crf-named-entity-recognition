@@ -152,7 +152,9 @@ class CRFModel:
         self.X_test= [sent2features(s) for s in sentences_test]
         self.y_test = [sent2labels(s) for s in sentences_test]
 
+        print(f"START FITTING MODEL FOR '{self.extraction_of}'")
         self.crf.fit(self.X_train, self.y_train)
+        print(f"FINISHED FITTING MODEL FOR '{self.extraction_of}'")
 
         y_pred = self.crf.predict(self.X_test)
 
