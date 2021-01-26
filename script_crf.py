@@ -23,15 +23,24 @@ def load_data(filename):
                     v_new[k1] = v1
     return data_new
 
+def load_test_ids(filename):
+    with open(filename, 'r', encoding='utf-8') as infile:
+        data = json.load(infile)
+        ids = list()
+        ids.extend(data['test_IDs'])
+    
+    return ids
+
 data = load_data('data_laptop_absa.json')
+testIds = load_test_ids('test_IDs_laptop_absa.json')
 
 sentiment_crf = CRFModel('S', data)
 aspects_crf = CRFModel('A', data)
 modifiers_crf = CRFModel('M', data)
 
-s_pred, s_test = sentiment_crf.fit_and_predict()
-a_pred, a_test = aspects_crf.fit_and_predict()
-m_pred, m_test = modifiers_crf.fit_and_predict()
+s_pred, s_test = sentiment_crf.fit_and_predict(testIds)
+a_pred, a_test = aspects_crf.fit_and_predict(testIds)
+m_pred, m_test = modifiers_crf.fit_and_predict(testIds)
 
 
 f1_sentiments = m.f1_score(s_pred, s_test, average='macro')

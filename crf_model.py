@@ -118,22 +118,16 @@ class CRFModel:
         words = list(self.vocabs)
         return self.kmeans.labels_[words.index(token)]
 
-    def fit_and_predict(self):
-
-        keys = list(self.data.keys())
-        random.shuffle(keys)
-
-        split_parameter = round(len(keys)*0.8)
-        keys_train = keys[:split_parameter]
-        keys_test = keys[split_parameter:]
+    def fit_and_predict(self, keys_test):
 
         train_data = dict()
-        for k in keys_train:
-            train_data[k] = self.data[k]
-
         test_data = dict()
-        for k in keys_test:
-            test_data[k] = self.data[k]
+
+        for k, v in self.data.items():
+            if k in keys_test:
+                test_data[k] = v
+            else:
+                train_data[k] = v
 
         print(f"START TRAINING PREPROCESSING FOR '{self.extraction_of}'")
         train_data = PreProcessor.preprocess_train_crf(train_data, self.getCluster, self.extraction_of)
