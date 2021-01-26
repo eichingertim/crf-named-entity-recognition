@@ -2,6 +2,7 @@ import json
 import random
 
 from sklearn_crfsuite import metrics
+from sklearn import metrics as m
 from collections import Counter
 
 from crf_model import CRFModel
@@ -33,9 +34,9 @@ a_pred, a_test = aspects_crf.fit_and_predict()
 m_pred, m_test = modifiers_crf.fit_and_predict()
 
 
-f1_sentiments = metrics.flat_f1_score(s_pred, s_test)
-f1_aspects = metrics.flat_f1_score(a_pred, a_test)
-f1_modifiers = metrics.flat_f1_score(m_pred, m_test)
+f1_sentiments = m.f1_score(s_pred, s_test, average='macro')
+f1_aspects = m.f1_score(a_pred, a_test, average='macro')
+f1_modifiers = m.f1_score(m_pred, m_test, average='macro')
 
 
 print(f"F1-Score Sentiments {f1_sentiments}")

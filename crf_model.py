@@ -8,6 +8,19 @@ from sklearn_crfsuite import scorers
 
 random.seed(1234321)
 
+def flatten_array(ar):
+
+    flattened = list()
+
+    for s in ar:
+        for t in s:
+            if t == '1':
+                print('lol')
+            flattened.append(t)
+
+    return flattened
+
+
 def word2features(sent, i):
     word = sent[i][0]
     postag = sent[i][1]
@@ -94,9 +107,10 @@ class CRFModel:
 
         self.crf = sklearn_crfsuite.CRF(
             algorithm='lbfgs',
-            c1=0.0001,
-            c2=0.0001,
-            max_iterations=100,
+            verbose=1,
+            max_iterations=1000,
+            c1=0.001,
+            c2=0.001,
             all_possible_transitions=True
         )
 
@@ -139,4 +153,7 @@ class CRFModel:
         self.y_test = [sent2labels(s) for s in sentences_test]
 
         self.crf.fit(self.X_train, self.y_train)
-        return self.crf.predict(self.X_test), self.y_test
+
+        y_pred = self.crf.predict(self.X_test)
+
+        return flatten_array(y_pred), flatten_array(self.y_test)

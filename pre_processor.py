@@ -42,6 +42,7 @@ class PreProcessor:
 
     @staticmethod
     def calculateClusters(data):
+        print("STARTED CALCULATING CLUSTERS")
         sentences = [PreProcessor.lemmatize_sen(v.get('tokens')) for k, v in data.items()]
 
         word2vec_model = Word2Vec(sentences, min_count=1)
@@ -53,6 +54,7 @@ class PreProcessor:
         kmeans = cluster.KMeans(n_clusters=num_clusters)
         kmeans.fit(X)
 
+        print("FINISHED CALCULATING CLUSTERS")
         return word2vec_model.wv.vocab, kmeans
 
     @staticmethod
@@ -81,6 +83,8 @@ class PreProcessor:
 
                 sentence['labeling'] = labeler[j].get(eo)
                 sentences.append(sentence)
+        
+        sentences = PreProcessor.stop_words(sentences)
 
         words = list()
         for s in sentences:

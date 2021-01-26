@@ -1,6 +1,8 @@
 gensim
 spacy
 tqdm
+pandas
+nltk
 sklearn
 sklearn_crfsuite
 collections
