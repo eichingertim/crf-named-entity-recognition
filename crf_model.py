@@ -1,4 +1,5 @@
 import random
+import csv
 
 from pre_processor import PreProcessor
 
@@ -107,10 +108,9 @@ class CRFModel:
 
         self.crf = sklearn_crfsuite.CRF(
             algorithm='lbfgs',
+            c2=0.01,
             verbose=1,
             max_iterations=1000,
-            c1=0.001,
-            c2=0.001,
             all_possible_transitions=True
         )
 
@@ -149,6 +149,14 @@ class CRFModel:
         print(f"START FITTING MODEL FOR '{self.extraction_of}'")
         self.crf.fit(self.X_train, self.y_train)
         print(f"FINISHED FITTING MODEL FOR '{self.extraction_of}'")
+
+        iterations = self.crf.training_log_.iterations
+        file = open('trainresults/' + self.extraction_of + "-train.csv", "w")
+
+        file.write('loss,feature_norm\n')
+        for it in iterations:
+            file.write(str(it['loss']) + ',' + str(it['feature_norm']) + '\n')
+        file.close()
 
         y_pred = self.crf.predict(self.X_test)
 

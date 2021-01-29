@@ -43,13 +43,28 @@ a_pred, a_test = aspects_crf.fit_and_predict(testIds)
 m_pred, m_test = modifiers_crf.fit_and_predict(testIds)
 
 
+recall_sentiments = m.recall_score(s_pred, s_test, average='macro')
+precision_sentiments = m.precision_score(s_pred, s_test, average='macro')
 f1_sentiments = m.f1_score(s_pred, s_test, average='macro')
+
+recall_aspects = m.recall_score(a_pred, a_test, average='macro')
+precision_spects = m.precision_score(a_pred, a_test, average='macro')
 f1_aspects = m.f1_score(a_pred, a_test, average='macro')
+
+recall_modifiers = m.recall_score(m_pred, m_test, average='macro')
+precision_modifiers = m.precision_score(m_pred, m_test, average='macro')
 f1_modifiers = m.f1_score(m_pred, m_test, average='macro')
 
-
+print(f"Precision Sentiments {precision_sentiments}")
+print(f"Recall Sentiments {recall_sentiments}")
 print(f"F1-Score Sentiments {f1_sentiments}")
+
+print(f"Precision Aspects {precision_spects}")
+print(f"Recall Aspects {recall_aspects}")
 print(f"F1-Score Aspects {f1_aspects}")
+
+print(f"Precision Modifiers {precision_modifiers}")
+print(f"Recall Modifiers {recall_modifiers}")
 print(f"F1-Score Modfiiers {f1_modifiers}")
 
 print(f"F1-Score Average {(f1_sentiments + f1_aspects + f1_modifiers)/3}")
