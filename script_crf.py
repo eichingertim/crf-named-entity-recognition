@@ -68,3 +68,25 @@ print(f"Recall Modifiers {recall_modifiers}")
 print(f"F1-Score Modfiiers {f1_modifiers}")
 
 print(f"F1-Score Average {(f1_sentiments + f1_aspects + f1_modifiers)/3}")
+
+def print_state_features(state_features):
+    for (attr, label), weight in state_features:
+        print("%0.6f %-8s %s" % (weight, label, attr))
+
+print("Top positive Sentiments:")
+print_state_features(Counter(sentiment_crf.crf.state_features_).most_common(10))
+
+print("\nTop negative Sentiments:")
+print_state_features(Counter(sentiment_crf.crf.state_features_).most_common()[-10:])
+
+print("Top positive Aspects:")
+print_state_features(Counter(aspects_crf.crf.state_features_).most_common(10))
+
+print("\nTop negative Aspects:")
+print_state_features(Counter(aspects_crf.crf.state_features_).most_common()[-10:])
+
+print("Top positive Modifiers:")
+print_state_features(Counter(modifiers_crf.crf.state_features_).most_common(10))
+
+print("\nTop negative Modifiers:")
+print_state_features(Counter(modifiers_crf.crf.state_features_).most_common()[-10:])
