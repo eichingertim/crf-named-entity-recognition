@@ -4,6 +4,7 @@ import random
 from sklearn_crfsuite import metrics
 from sklearn import metrics as m
 from collections import Counter
+from pre_processor import PreProcessor
 
 from crf_model import CRFModel
 
@@ -17,7 +18,8 @@ def load_data(filename):
                 v1_new = v_new.setdefault(k1,dict())
                 if k1 != 'tokens':
                     for k2,v2 in list(v1.items()):
-                        v2_new = [l.replace('B_','').replace('I_','').replace('I','').replace('B','') for l in v2]
+                        v2_new = [l.replace('B_','').replace('I_','') \
+                            .replace('I','').replace('B','') for l in v2]
                         v1_new[k2] = v2_new
                 else:
                     v_new[k1] = v1
@@ -34,14 +36,22 @@ def load_test_ids(filename):
 data = load_data('data_laptop_absa.json')
 testIds = load_test_ids('test_IDs_laptop_absa.json')
 
-sentiment_crf = CRFModel('S', data)
-aspects_crf = CRFModel('A', data)
-modifiers_crf = CRFModel('M', data)
+# Caclulating clusters for data
+cluster = PreProcessor.calculateClusters(data)
+
+# Creating, Fitting and Predicting CRF Models
+
+sentiment_crf = CRFModel('S', data, cluster)
+aspects_crf = CRFModel('A', data, cluster)
+modifiers_crf = CRFModel('M', data, cluster)
 
 s_pred, s_test = sentiment_crf.fit_and_predict(testIds)
 a_pred, a_test = aspects_crf.fit_and_predict(testIds)
 m_pred, m_test = modifiers_crf.fit_and_predict(testIds)
 
+#==================== Calculating metrics ===============================
+
+# average=macro => unweighted score
 
 recall_sentiments = m.recall_score(s_pred, s_test, average='macro')
 precision_sentiments = m.precision_score(s_pred, s_test, average='macro')
@@ -69,25 +79,24 @@ print(f"F1-Score Modfiiers {f1_modifiers}")
 
 print(f"F1-Score Average {(f1_sentiments + f1_aspects + f1_modifiers)/3}")
 
+#===================== Writing Learned Features ============================
+
 def write_state_features(title, state_features, file):
-    file.write("Title\n")
+    file.write(f"{title}\n")
     for (attr, label), weight in state_features:
         file.write("%0.6f %-8s %s\n" % (weight, label, attr))
 
-file_s = open("sentiments_features.txt", "w")
+file_s = open("testresults/sentiments_features.txt", "w")
 f_s = list()
-f_s.extend(Counter(sentiment_crf.crf.state_features_).most_common(10))
-f_s.extend(Counter(sentiment_crf.crf.state_features_).most_common()[-10:])
+f_s.extend(Counter(sentiment_crf.crf.state_features_).most_common(15))
 write_state_features("Top Sentiment Features", f_s, file_s)
 
-file_a = open("aspects_features.txt", "w")
+file_a = open("testresults/aspects_features.txt", "w")
 f_a = list()
-f_a.extend(Counter(aspects_crf.crf.state_features_).most_common(10))
-f_a.extend(Counter(aspects_crf.crf.state_features_).most_common()[-10:])
+f_a.extend(Counter(aspects_crf.crf.state_features_).most_common(15))
 write_state_features("Top Aspect Features", f_a, file_a)
 
-file_m = open("modifiers_features.txt", "w")
+file_m = open("testresults/modifiers_features.txt", "w")
 f_m = list()
-f_m.extend(Counter(modifiers_crf.crf.state_features_).most_common(10))
-f_m.extend(Counter(modifiers_crf.crf.state_features_).most_common()[-10:])
+f_m.extend(Counter(modifiers_crf.crf.state_features_).most_common(15))
 write_state_features("Top Modifier Features", f_m, file_m)

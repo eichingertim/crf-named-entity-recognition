@@ -21,7 +21,9 @@ def flatten_array(ar):
 
     return flattened
 
-
+"""
+Generates a feature dict with features for one token
+"""
 def word2features(sent, i):
     word = sent[i][0]
     postag = sent[i][1]
@@ -94,9 +96,13 @@ class SentenceGetter(object):
         except:
             return None
 
+"""
+CRF Model class. Here the data gets preprocessed, the model is created, 
+fitted and evaluated
+"""
 class CRFModel:
 
-    def __init__(self, extraction_of, data):
+    def __init__(self, extraction_of, data, cluster_data):
         self.extraction_of = extraction_of
         self.data = data
 
@@ -104,8 +110,9 @@ class CRFModel:
         self.y_train = []
         self.X_test = []
         self.y_test = []
-        self.vocabs, self.kmeans = PreProcessor.calculateClusters(self.data)
+        self.vocabs, self.kmeans = cluster_data
 
+        # sklearn CRF model (verbose = 1 -> show training-iterations in console)
         self.crf = sklearn_crfsuite.CRF(
             algorithm='lbfgs',
             c2=0.01,
@@ -114,10 +121,14 @@ class CRFModel:
             all_possible_transitions=True
         )
 
+    # extracts the corresponding cluster for a token
     def getCluster(self, token):
         words = list(self.vocabs)
         return self.kmeans.labels_[words.index(token)]
 
+    # * divides data into train and test,
+    # * preprocesses train and test seperated
+    # * fits the model with training data and predicts test data
     def fit_and_predict(self, keys_test):
 
         train_data = dict()
@@ -150,37 +161,6 @@ class CRFModel:
         self.crf.fit(self.X_train, self.y_train)
         print(f"FINISHED FITTING MODEL FOR '{self.extraction_of}'")
 
-        iterations = self.crf.training_log_.iterations
-        file = open('trainresults/' + self.extraction_of + "-train.csv", "w")
-
-        file.write('loss,feature_norm\n')
-        for it in iterations:
-            file.write(str(it['loss']) + ',' + str(it['feature_norm']) + '\n')
-        file.close()
-
         y_pred = self.crf.predict(self.X_test)
-
-        file = open("testresults/" + self.extraction_of + "-test.csv", "w")
-
-        abs_h = dict()
-
-        for i, s in enumerate(self.X_test):
-            for j, token in enumerate(s):
-
-                label = y_pred[i][j]
-                try:
-                    abs_h[token['word.lower()']+"|"+label] += 1
-                except:
-                    abs_h[token['word.lower()']+"|"+label] = 1
-
-        for t,n in abs_h.items():
-            token = t.split("|")[0]
-            label = t.split("|")[1]
-
-            if token == "" or token == " " or token == "  " or token == "\n":
-                continue
-
-            file.write(token + "," + label + "," + str(n) + "\n")
-                
 
         return flatten_array(y_pred), flatten_array(self.y_test)

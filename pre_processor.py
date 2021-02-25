@@ -20,16 +20,17 @@ class PreProcessor:
         'modifiers'
     ]
 
+    PUNCTUATION_MARKS = ['.', ';', '!', ',', '*', '?', '/', '-', '"', '..']
+    MODIFIER = ['very', 'biggest', 'big', 'highly', 'high', 'not', 'cannot']
+
     @staticmethod
     def stop_words(sentences):
         stopwordsList = stopwords.words('english')
-        more_stopwords = ['.', ';', '!', ',', '*', '?', '/', '-', '"', '..']
-        stopwordsList.extend(more_stopwords)
-
+        stopwordsList.extend(PreProcessor.PUNCTUATION_MARKS)
 
         for sen in sentences:
             for i, t in enumerate(sen['tokens']):
-                if t in stopwordsList and not t in ['very', 'biggest', 'big', 'highly', 'high', 'not', 'cannot']:
+                if t in stopwordsList and not t in PreProcessor.MODIFIER:
                     sen['labeling'][i] = 'O'
 
         return sentences
@@ -100,7 +101,6 @@ class PreProcessor:
                 else:
                     word['labeling'] = 'O'
                     words.append(word)
-                words.append(word)
 
         return pd.DataFrame(words)
 
@@ -148,7 +148,6 @@ class PreProcessor:
 
         sentences = PreProcessor.stop_words(sentences)
 
-
         words = list()
         for s in sentences:
             for i, t in enumerate(s['tokens']):
@@ -163,7 +162,6 @@ class PreProcessor:
                 else:
                     word['labeling'] = 'O'
                     words.append(word)
-                words.append(word)
 
         return pd.DataFrame(words)
 
@@ -177,3 +175,4 @@ class PreProcessor:
             return 'M'
         else:
             return 'O'
+
