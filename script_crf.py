@@ -69,24 +69,25 @@ print(f"F1-Score Modfiiers {f1_modifiers}")
 
 print(f"F1-Score Average {(f1_sentiments + f1_aspects + f1_modifiers)/3}")
 
-def print_state_features(state_features):
+def write_state_features(title, state_features, file):
+    file.write("Title\n")
     for (attr, label), weight in state_features:
-        print("%0.6f %-8s %s" % (weight, label, attr))
+        file.write("%0.6f %-8s %s\n" % (weight, label, attr))
 
-print("Top positive Sentiments:")
-print_state_features(Counter(sentiment_crf.crf.state_features_).most_common(10))
+file_s = open("sentiments_features.txt", "w")
+f_s = list()
+f_s.extend(Counter(sentiment_crf.crf.state_features_).most_common(10))
+f_s.extend(Counter(sentiment_crf.crf.state_features_).most_common()[-10:])
+write_state_features("Top Sentiment Features", f_s, file_s)
 
-print("\nTop negative Sentiments:")
-print_state_features(Counter(sentiment_crf.crf.state_features_).most_common()[-10:])
+file_a = open("aspects_features.txt", "w")
+f_a = list()
+f_a.extend(Counter(aspects_crf.crf.state_features_).most_common(10))
+f_a.extend(Counter(aspects_crf.crf.state_features_).most_common()[-10:])
+write_state_features("Top Aspect Features", f_a, file_a)
 
-print("Top positive Aspects:")
-print_state_features(Counter(aspects_crf.crf.state_features_).most_common(10))
-
-print("\nTop negative Aspects:")
-print_state_features(Counter(aspects_crf.crf.state_features_).most_common()[-10:])
-
-print("Top positive Modifiers:")
-print_state_features(Counter(modifiers_crf.crf.state_features_).most_common(10))
-
-print("\nTop negative Modifiers:")
-print_state_features(Counter(modifiers_crf.crf.state_features_).most_common()[-10:])
+file_m = open("modifiers_features.txt", "w")
+f_m = list()
+f_m.extend(Counter(modifiers_crf.crf.state_features_).most_common(10))
+f_m.extend(Counter(modifiers_crf.crf.state_features_).most_common()[-10:])
+write_state_features("Top Modifier Features", f_m, file_m)

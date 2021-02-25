@@ -160,4 +160,23 @@ class CRFModel:
 
         y_pred = self.crf.predict(self.X_test)
 
+        file = open("testresults/" + self.extraction_of + "-test.csv", "w")
+
+        abs_h = dict()
+
+        for i, s in enumerate(self.X_test):
+            for j, token in enumerate(s):
+
+                label = y_pred[i][j]
+                try:
+                    abs_h[token['word.lower()']+"|"+label] += 1
+                except:
+                    abs_h[token['word.lower()']+"|"+label] = 1
+
+        for t,n in abs_h.items():
+            token = t.split("|")[0]
+            label = t.split("|")[1]
+            file.write(token + "," + label + "," + str(n) + "\n")
+                
+
         return flatten_array(y_pred), flatten_array(self.y_test)

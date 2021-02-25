@@ -1,0 +1,21 @@
+Title
+7.088390 O        word.lower():and
+6.487987 O        word.lower():very
+6.302179 O        word[-2:]:is
+6.031075 S        word.lower():excellent
+5.853680 O        word.lower():again
+5.811768 S        word.lower():smooth
+5.811459 O        word.lower():computer
+5.242968 O        word.lower():really
+5.167398 O        word.lower():with
+5.167398 O        word[-3:]:ith
+-3.015832 O        word.lower():nice
+-3.041524 O        word.lower():awesome
+-3.114659 O        word.lower():fast
+-3.334874 O        word.lower():worth
+-3.411108 O        word.lower():great
+-3.499766 O        word[-3:]:eat
+-3.530751 S        word.lower():a
+-3.533153 O        word.lower():better
+-3.748009 O        word.lower():fine
+-4.758058 O        word.lower():love

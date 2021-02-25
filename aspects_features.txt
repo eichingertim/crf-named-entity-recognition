@@ -1,0 +1,21 @@
+Title
+6.205866 O        word.lower():are
+5.472524 O        word[-2:]:he
+5.472067 O        word.lower():the
+5.171578 A        word.lower():chromecast
+4.933032 O        word.lower():excellent
+4.673194 A        word.lower():ichat
+4.351209 A        word.lower():shipment
+4.290604 A        word.lower():chassis
+4.043837 A        word.lower():display
+3.958548 A        word.lower():detachable
+-2.976674 O        word.lower():keyboard
+-3.036676 O        -1:word1.lower():beautiful
+-3.124381 O        word[-3:]:sis
+-3.215336 O        word.lower():memory
+-3.233223 O        word.lower():brand
+-3.277603 O        word.lower():battery
+-3.298228 O        word.lower():driver
+-3.335771 O        -1:word1.lower():cheap
+-3.895150 O        word.lower():computer
+-4.043837 O        word.lower():display

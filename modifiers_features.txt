@@ -1,0 +1,21 @@
+Title
+8.130147 M        word.lower():very
+7.211677 O        word.lower():a
+6.879370 M        word.lower():much
+6.855451 M        word.lower():really
+6.830615 M        word.lower():not
+6.188618 M        word.lower():without
+6.111094 M        word.lower():overriding
+6.088957 M        word.lower():tad
+6.088957 M        word[-3:]:tad
+5.969319 M        word.lower():massive
+-5.038816 O        word.lower():everything
+-5.061713 O        word.lower():somewhat
+-5.217451 O        -1:word1.lower():pleased
+-5.471262 O        word.lower():little
+-5.778933 O        word.lower():pretty
+-6.188618 O        word.lower():without
+-6.830615 O        word.lower():not
+-6.855451 O        word.lower():really
+-6.879370 O        word.lower():much
+-8.130147 O        word.lower():very
