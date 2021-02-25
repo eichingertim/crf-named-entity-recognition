@@ -176,6 +176,10 @@ class CRFModel:
         for t,n in abs_h.items():
             token = t.split("|")[0]
             label = t.split("|")[1]
+
+            if token == "" or token == " " or token == "  " or token == "\n":
+                continue
+
             file.write(token + "," + label + "," + str(n) + "\n")
                 
 

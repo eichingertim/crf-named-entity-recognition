@@ -3,7 +3,7 @@ am,O,102
 surprised,O,14
 by,O,62
 how,O,44
-well,O,146
+well,O,152
 this,O,1058
 unit,O,32
 is,O,1308
@@ -32,7 +32,7 @@ but,O,594
 wanted,O,50
 something,O,62
 faster,O,28
-more,O,116
+more,O,122
 portable,O,16
 windows,O,150
 8,O,86
@@ -50,7 +50,7 @@ so,O,392
 use,O,258
 touchscreen,O,16
 most,O,58
-time,O,114
+time,O,120
 opted,O,4
 for,O,960
 pentium,O,8
@@ -85,7 +85,7 @@ didn't,O,60
 deduct,O,6
 star,O,40
 it's,O,210
-little,M,24
+little,M,18
 annoying,O,28
 ,,O,2512
 you,O,434
@@ -98,7 +98,7 @@ disappointed,O,22
 with,O,770
 apple,O,54
 i'm,O,174
-not,O,394
+not,O,418
 geek,O,6
 stick,O,18
 them,O,46
@@ -134,7 +134,7 @@ com,O,6
 course,O,12
 pc,O,28
 shudder,O,6
-not,M,252
+not,M,228
 mac,O,76
 nut,O,6
 have,O,552
@@ -205,7 +205,7 @@ boot,O,38
 hard,O,90
 5400rpm,O,6
 be,O,362
-bit,M,30
+bit,M,18
 sluggish,O,6
 ok,O,12
 doesn't,O,62
@@ -235,7 +235,7 @@ acer,O,34
 amazon,O,58
 refuse,O,6
 help,O,28
-well,M,24
+well,M,18
 except,M,6
 sound,O,66
 keep,O,36
@@ -247,7 +247,7 @@ later,O,14
 phenomenal,O,4
 battery,O,114
 life,O,62
-no,O,128
+no,O,134
 issue,O,142
 keyboard,O,182
 touchpad,O,74
@@ -256,7 +256,7 @@ like,O,218
 myself,O,14
 lightning,O,4
 new,O,102
-especially,M,22
+especially,M,16
 lightness,O,6
 compact,O,6
 ability,O,6
@@ -269,7 +269,7 @@ sculpt,O,6
 mouse,O,88
 ?,O,54
 speaker,O,60
-really,M,92
+really,M,96
 too,O,104
 6,O,36
 hour,O,100
@@ -287,7 +287,7 @@ simple,O,30
 feel,O,50
 heavy,O,54
 putting,O,12
-ssd,O,38
+ssd,O,36
 future,O,6
 sure,O,52
 cannot,M,6
@@ -334,7 +334,7 @@ everything,O,68
 do,O,208
 connection,O,16
 go,O,54
-often,O,36
+often,O,42
 becomes,O,12
 frustrating,O,6
 typing,O,36
@@ -355,14 +355,14 @@ brand,O,20
 responsive,O,18
 gaming,O,46
 they,O,178
-don't,O,70
-cover,O,28
-much,O,88
+don't,M,12
+cover,M,6
+much,M,28
 anything,O,54
 should,O,54
 paperweight,O,6
 functional,O,10
-overall,O,64
+overall,O,68
 buy,O,136
 product,O,118
 certified,O,6
@@ -397,6 +397,7 @@ home,O,52
 version,O,62
 upgraded,O,28
 enterprise,O,6
+don't,O,64
 play,O,50
 game,O,100
 performance,O,72
@@ -434,6 +435,7 @@ even,O,106
 where,O,58
 located,O,12
 thing,O,100
+especially,O,24
 paired,O,6
 built-in,O,12
 dolby,O,6
@@ -442,7 +444,7 @@ software,O,50
 put,O,28
 any,O,114
 i've,O,94
-ever,M,22
+ever,M,16
 had,O,228
 enough,O,60
 niceities,O,6
@@ -451,16 +453,16 @@ reason,O,24
 gave,O,18
 apparently,O,6
 distracting,O,6
-especially,O,18
 against,O,18
 white,O,12
 background,O,12
 matter,O,12
+much,O,82
 tweaked,O,6
 color,O,18
 reproduction,O,6
 seemed,O,6
-bit,O,36
+bit,O,48
 off,O,40
 display,O,64
 me,O,178
@@ -502,7 +504,7 @@ rockin,O,6
 le,O,12
 1000,O,6
 fine,O,66
-complete,M,6
+complete,O,6
 win8.1,O,6
 quit,O,6
 wouldn't,O,18
@@ -552,7 +554,7 @@ expectation,O,12
 muti,O,6
 tasking,O,6
 playing,O,20
-little,O,64
+little,O,70
 stopped,O,30
 turning,O,6
 again,O,48
@@ -563,7 +565,7 @@ low,O,54
 requirement,O,10
 seems,O,42
 overheat,O,6
-pretty,O,16
+pretty,O,22
 until,O,18
 decided,O,18
 plugged,O,22
@@ -571,7 +573,7 @@ usb,O,46
 previously,O,12
 functioned,O,6
 device,O,88
-longer,O,18
+longer,O,24
 resolve,O,6
 company,O,12
 before,O,60
@@ -586,7 +588,7 @@ high,O,18
 &,O,42
 worried,O,18
 break,O,12
-really,O,78
+really,O,74
 book,O,18
 advertised,O,22
 resolution,O,28
@@ -599,7 +601,7 @@ our,O,36
 school,O,38
 she,O,22
 numerous,M,6
-time,M,18
+time,M,12
 turn,O,46
 remedied,O,6
 charger,O,12
@@ -691,7 +693,6 @@ i'd,O,24
 least,O,28
 can't,O,46
 tell,O,12
-much,M,22
 potential,O,6
 durability,O,12
 couple,O,24
@@ -738,7 +739,7 @@ apps,O,24
 mobile,O,6
 must,O,24
 android,O,6
-yet,M,20
+yet,M,16
 ",O,350
 everyday,O,16
 advertise,O,6
@@ -769,7 +770,7 @@ update,O,68
 does,O,6
 job,O,36
 useless,O,4
-pretty,M,36
+pretty,M,30
 expect,O,12
 haven't,O,38
 customize,O,6
@@ -800,7 +801,7 @@ linux,O,18
 compatibility,O,18
 red,O,6
 flag,O,6
-quite,O,30
+quite,O,36
 lousy,O,6
 sad,O,12
 cell,O,18
@@ -830,7 +831,6 @@ blown,O,6
 telling,O,6
 pay,O,6
 $259,O,6
-don't,M,6
 impressed,O,28
 far,M,4
 cheaper,O,10
@@ -1008,12 +1008,12 @@ weighs,O,6
 5.3,O,6
 lb,O,6
 light,O,34
-super,O,30
+super,O,24
 cooling,O,18
 above,O,12
 insert,O,6
 g,O,6
-ever,O,24
+ever,O,30
 done,O,18
 lags,O,6
 hopefully,O,16
@@ -1111,7 +1111,7 @@ even,M,6
 installed,O,16
 chance,O,6
 mere,O,6
-yet,O,6
+yet,O,10
 happen,O,6
 charging,O,6
 exactly,O,12
@@ -1123,7 +1123,6 @@ purpose,O,16
 such,O,30
 player,O,10
 function,O,24
-quite,M,6
 choke,O,6
 sample,O,6
 meaning,O,6
@@ -1132,7 +1131,7 @@ steinberg's,O,6
 grand,O,12
 real-time,O,6
 card,O,66
-huge,O,18
+huge,M,10
 latency,O,6
 due,O,20
 non-asio,O,6
@@ -1165,6 +1164,7 @@ comfortable,O,16
 anyway,O,6
 deficiency,O,6
 bottom,O,30
+super,M,24
 got,O,66
 toshibas,O,4
 destructive,O,6
@@ -1243,6 +1243,7 @@ ca,O,6
 $940aud,O,6
 priceusa,O,6
 its,O,24
+huge,O,12
 big,O,30
 presentation,O,6
 hungry,O,6
@@ -1479,6 +1480,7 @@ bargain,O,12
 configuration,O,12
 itl,O,6
 c,O,18
+cover,O,22
 50,O,6
 birthday,O,6
 versatile,O,6
@@ -1514,7 +1516,6 @@ corrupted,O,6
 thirdly,O,6
 optical,O,18
 read,O,24
-longer,M,6
 fluke,O,10
 ideosynchrosies,O,6
 mention,O,6
@@ -1552,7 +1553,7 @@ cannot,O,30
 lesson,O,6
 warn,O,6
 taste,O,6
-giant,M,4
+giant,O,4
 gorgeous,O,4
 enjoy,O,10
 sporadically,O,6
@@ -1567,7 +1568,7 @@ solid,O,6
 choice,O,6
 reliably,O,6
 poor,O,12
-slightly,M,6
+slightly,O,10
 awkward,O,6
 layout,O,6
 jammed,O,6
@@ -1615,7 +1616,6 @@ nearly,O,6
 effective,O,4
 junk,O,4
 exact,O,4
-slightly,O,4
 deployed,O,4
 world,O,10
 11.6,O,6
@@ -1638,7 +1638,6 @@ grab,O,12
 sorry,O,6
 external,O,42
 kill,O,6
-huge,M,4
 difference,O,8
 realized,O,12
 bringing,O,6
@@ -1813,7 +1812,7 @@ extended,O,6
 bulge,O,6
 ultra-base,O,6
 rw,O,6
-no,M,12
+no,M,6
 discrete,M,6
 long-time,O,6
 including,O,12
@@ -1891,7 +1890,6 @@ cuffed,O,6
 shackled,O,6
 yoga,O,6
 whine,O,6
-super,M,18
 details,O,6
 14,O,6
 initially,O,4
@@ -1904,7 +1902,8 @@ primarily,O,4
 non-work,O,4
 swapped,O,4
 sandisk,O,4
-extreme,O,4
+extreme,M,4
+ssd,M,2
 240,O,4
 emphasize,O,6
 unintentionally,O,6
@@ -1959,8 +1958,6 @@ gig,O,4
 limitation,O,4
 gig's,O,4
 95%,O,4
-more,M,6
-often,M,12
 shipping,O,4
 handling,O,4
 cute,O,6
@@ -1986,7 +1983,6 @@ work's,O,6
 extension,O,6
 plugins,O,6
 manager,O,4
-overall,M,4
 $490,O,4
 searched,O,6
 everywhere,O,6
@@ -2197,6 +2193,7 @@ bring,O,6
 folk,O,6
 hopeless,O,6
 ironically,O,6
+often,M,6
 ive,O,6
 irritated,O,6
 refreshing,O,6
